@@ -1,95 +1,164 @@
-/*
- Navicat Premium Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 30, 2024 at 04:31 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
- Source Server         : koneksi01
- Source Server Type    : MySQL
- Source Server Version : 100427 (10.4.27-MariaDB)
- Source Host           : localhost:3306
- Source Schema         : klinik_database
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
- Target Server Type    : MySQL
- Target Server Version : 100427 (10.4.27-MariaDB)
- File Encoding         : 65001
 
- Date: 30/04/2024 13:23:41
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+--
+-- Database: `klinik_database`
+--
 
--- ----------------------------
--- Table structure for appointment
--- ----------------------------
-DROP TABLE IF EXISTS `appointment`;
-CREATE TABLE `appointment`  (
-  `ID_Appointment` int NOT NULL AUTO_INCREMENT,
-  `ID_Pasien` int NULL DEFAULT NULL,
-  `ID_Dokter` int NULL DEFAULT NULL,
-  `Tanggal_Perjanjian` date NULL DEFAULT NULL,
-  `Jam_Perjanjian` time NULL DEFAULT NULL,
-  `Keterangan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  PRIMARY KEY (`ID_Appointment`) USING BTREE,
-  INDEX `ID_Pasien`(`ID_Pasien` ASC) USING BTREE,
-  INDEX `ID_Dokter`(`ID_Dokter` ASC) USING BTREE,
-  CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`ID_Pasien`) REFERENCES `pasien` (`ID_Pasien`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`ID_Dokter`) REFERENCES `dokter` (`ID_Dokter`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+-- --------------------------------------------------------
 
--- ----------------------------
--- Records of appointment
--- ----------------------------
-INSERT INTO `appointment` VALUES (1, 3, 3, '2024-04-27', '14:00:00', 'Operasi bisul.');
-INSERT INTO `appointment` VALUES (2, 2, 2, '2024-04-28', '11:30:00', 'Pemasangan behel.');
-INSERT INTO `appointment` VALUES (3, 3, 3, '2024-04-29', '14:00:00', 'Operasi katarak.');
-INSERT INTO `appointment` VALUES (4, 4, 1, '2024-08-10', '21:00:00', 'Pemeriksaan kehamilan.');
-INSERT INTO `appointment` VALUES (5, 1, 1, '2024-05-01', '15:30:00', 'Konsultasi mengenai penyakit kronis');
+--
+-- Table structure for table `appointment`
+--
 
--- ----------------------------
--- Table structure for dokter
--- ----------------------------
-DROP TABLE IF EXISTS `dokter`;
-CREATE TABLE `dokter`  (
-  `ID_Dokter` int NOT NULL AUTO_INCREMENT,
-  `Nama_Dokter` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Spesialisasi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Nomor_Telepon` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Jadwal_Praktek` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Informasi_Lain` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  PRIMARY KEY (`ID_Dokter`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+CREATE TABLE `appointment` (
+  `ID_Appointment` int(11) NOT NULL,
+  `ID_Pasien` int(11) DEFAULT NULL,
+  `ID_Dokter` int(11) DEFAULT NULL,
+  `Tanggal_Perjanjian` date DEFAULT NULL,
+  `Jam_Perjanjian` time DEFAULT NULL,
+  `Keterangan` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- ----------------------------
--- Records of dokter
--- ----------------------------
-INSERT INTO `dokter` VALUES (1, 'Dr. Steven Adams', 'Dr. Steven Adams.png', 'Dokter Umum', '0811111111113', 'RS ABC, Jl. Gatot Subroto No. 123', 'Senin-Jumat, 08:00-16:00', 'Pengalaman lebih dari 10 tahun dalam praktik umum.');
-INSERT INTO `dokter` VALUES (2, 'Dr. Lisa Anderso', 'C A N D I D A T E 20.02.2024YOUTUBE- RISER MUSIC& ALL STREAMINGเทคะแนน.webp (2).jpg', 'Dokter Gigi', '0822222223', 'Klinik Gigi Smile, Jl. Thamrin No. 45', 'Senin-Sabtu, 09:00-17:00', 'Spesialisasi dalam perawatan gigi anak.');
-INSERT INTO `dokter` VALUES (3, 'Dr. Kevin Martinez', 'Dr. Kevin Martinez.jpg', 'Dokter Spesialis Bedah', '083333333333', 'RS XYZ, Jl. Sudirman No. 789', 'Selasa-Kamis, 10:00-18:00', 'Memiliki sertifikasi dalam bedah laparoskopik.');
-INSERT INTO `dokter` VALUES (4, 'Dr. Emma Taylor', 'Taylor.jpg', 'Dokter Kandungan', '084444444444', 'RS DEF, Jl. Kebon Sirih No. 567', 'Senin-Jumat, 08:00-16:00', 'Berfokus pada perawatan ibu hamil dengan komplikasi.');
-INSERT INTO `dokter` VALUES (5, 'Dr. Daniel Clark', 'Dr. Daniel Clark.jpg', 'Dokter Spesialis Penyakit Dalam', '085555555555', 'RS GHI, Jl. Menteng No. 789', 'Senin-Jumat, 15:00-17:00', 'Menyediakan perawatan bagi pasien dengan kondisi kronis.');
+--
+-- Dumping data for table `appointment`
+--
 
--- ----------------------------
--- Table structure for pasien
--- ----------------------------
-DROP TABLE IF EXISTS `pasien`;
-CREATE TABLE `pasien`  (
-  `ID_Pasien` int NOT NULL AUTO_INCREMENT,
-  `Nama` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Alamat` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Nomor_Telepon` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Tanggal_Lahir` date NULL DEFAULT NULL,
-  `Jenis_Kelamin` enum('Laki-laki','Perempuan','Lainnya') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `Informasi_Lain` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  PRIMARY KEY (`ID_Pasien`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+INSERT INTO `appointment` (`ID_Appointment`, `ID_Pasien`, `ID_Dokter`, `Tanggal_Perjanjian`, `Jam_Perjanjian`, `Keterangan`) VALUES
+(1, 3, 3, '2024-04-27', '14:00:00', 'Operasi bisul.'),
+(2, 2, 2, '2024-04-28', '11:30:00', 'Pemasangan behel.'),
+(3, 3, 3, '2024-04-29', '14:00:00', 'Operasi katarak.'),
+(4, 4, 1, '2024-08-10', '21:00:00', 'Pemeriksaan kehamilan.'),
+(5, 1, 1, '2024-05-01', '15:30:00', 'Konsultasi mengenai penyakit kronis');
 
--- ----------------------------
--- Records of pasien
--- ----------------------------
-INSERT INTO `pasien` VALUES (1, 'John Doe', 'Jl. Menteng No. 123', '081234567890', '1999-05-15', 'Laki-laki', 'Riwayat alergi makanan.');
-INSERT INTO `pasien` VALUES (2, 'Jane Smith', 'Jl. Kebon Sirih No. 45', '085678901234', '1985-09-20', 'Perempuan', 'Tidak ada informasi tambahan..');
-INSERT INTO `pasien` VALUES (3, 'Michael Jeanab', 'Jl. Sudirman No. 789', '082345678901', '1978-12-10', 'Perempuan', 'Riwayat penyakit jantung.');
-INSERT INTO `pasien` VALUES (4, 'Emily Brown', 'Jl. Thamrin No. 567', '087654321098', '1995-03-25', 'Laki-laki', 'Tidak ada informasi tambahan.');
+-- --------------------------------------------------------
 
-SET FOREIGN_KEY_CHECKS = 1;
+--
+-- Table structure for table `dokter`
+--
+
+CREATE TABLE `dokter` (
+  `ID_Dokter` int(11) NOT NULL,
+  `Nama_Dokter` varchar(255) DEFAULT NULL,
+  `Photo` varchar(255) DEFAULT NULL,
+  `Spesialisasi` varchar(100) DEFAULT NULL,
+  `Nomor_Telepon` varchar(15) DEFAULT NULL,
+  `Alamat` varchar(255) DEFAULT NULL,
+  `Jadwal_Praktek` varchar(255) DEFAULT NULL,
+  `Informasi_Lain` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dokter`
+--
+
+INSERT INTO `dokter` (`ID_Dokter`, `Nama_Dokter`, `Photo`, `Spesialisasi`, `Nomor_Telepon`, `Alamat`, `Jadwal_Praktek`, `Informasi_Lain`) VALUES
+(1, 'Dr. Steven Adams', 'Dr. Steven Adams.png', 'Dokter Umum', '0811111111113', 'RS ABC, Jl. Gatot Subroto No. 123', 'Senin-Jumat, 08:00-16:00', 'Pengalaman lebih dari 10 tahun dalam praktik umum.'),
+(2, 'Dr. Lisa Anderso', 'Dr. Lisa Anderson.jpg', 'Dokter Gigi', '082222222', 'Klinik Gusi Smile, Jl. Thamrin No. 45', 'Senin-Sabtu, 09:00-17:00', 'Spesialisasi dalam perawatan gigi anak.'),
+(3, 'Dr. Kevin Martinez', 'Dr. Kevin Martinez.jpg', 'Dokter Spesialis Bedah', '083333333333', 'RS XYZ, Jl. Sudirman No. 789', 'Selasa-Kamis, 10:00-18:00', 'Memiliki sertifikasi dalam bedah laparoskopik.'),
+(4, 'Dr. Emma Taylor', 'Taylor.jpg', 'Dokter Kandungan', '084444444444', 'RS DEF, Jl. Kebon Sirih No. 567', 'Senin-Jumat, 08:00-16:00', 'Berfokus pada perawatan ibu hamil dengan komplikasi.'),
+(5, 'Dr. Daniel Clark', 'Dr. Daniel Clark.jpg', 'Dokter Spesialis Penyakit Dalam', '085555555555', 'RS GHI, Jl. Menteng No. 789', 'Senin-Jumat, 15:00-17:00', 'Menyediakan perawatan bagi pasien dengan kondisi kronis.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pasien`
+--
+
+CREATE TABLE `pasien` (
+  `ID_Pasien` int(11) NOT NULL,
+  `Nama` varchar(255) DEFAULT NULL,
+  `Alamat` varchar(255) DEFAULT NULL,
+  `Nomor_Telepon` varchar(15) DEFAULT NULL,
+  `Tanggal_Lahir` date DEFAULT NULL,
+  `Jenis_Kelamin` enum('Laki-laki','Perempuan','Lainnya') DEFAULT NULL,
+  `Informasi_Lain` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pasien`
+--
+
+INSERT INTO `pasien` (`ID_Pasien`, `Nama`, `Alamat`, `Nomor_Telepon`, `Tanggal_Lahir`, `Jenis_Kelamin`, `Informasi_Lain`) VALUES
+(1, 'John Doe', 'Jl. Menteng No. 123', '081234567890', '1999-05-15', 'Laki-laki', 'Riwayat alergi makanan.'),
+(2, 'Jane Smith', 'Jl. Kebon Sirih No. 45', '085678901234', '1985-09-20', 'Perempuan', 'Tidak ada informasi tambahan..'),
+(3, 'Michael Jeanab', 'Jl. Sudirman No. 789', '082345678901', '1978-12-10', 'Perempuan', 'Riwayat penyakit jantung.'),
+(4, 'Emily Brown', 'Jl. Thamrin No. 567', '087654321098', '1995-03-25', 'Laki-laki', 'Tidak ada informasi tambahan.');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`ID_Appointment`),
+  ADD KEY `ID_Pasien` (`ID_Pasien`),
+  ADD KEY `ID_Dokter` (`ID_Dokter`);
+
+--
+-- Indexes for table `dokter`
+--
+ALTER TABLE `dokter`
+  ADD PRIMARY KEY (`ID_Dokter`);
+
+--
+-- Indexes for table `pasien`
+--
+ALTER TABLE `pasien`
+  ADD PRIMARY KEY (`ID_Pasien`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `appointment`
+--
+ALTER TABLE `appointment`
+  MODIFY `ID_Appointment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `dokter`
+--
+ALTER TABLE `dokter`
+  MODIFY `ID_Dokter` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `pasien`
+--
+ALTER TABLE `pasien`
+  MODIFY `ID_Pasien` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`ID_Pasien`) REFERENCES `pasien` (`ID_Pasien`),
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`ID_Dokter`) REFERENCES `dokter` (`ID_Dokter`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
