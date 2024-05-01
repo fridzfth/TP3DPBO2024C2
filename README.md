@@ -1,4 +1,5 @@
 ### Readme: Desain Program dan Penjelasan Alur Program
+###### Janji : Saya Mohammad Faridz Fathin [2202680] mengerjakan TP3 dalam mata kuliah Desain dan Pemrograman Berorientasi Objek (DPBO) untuk keberkahanNya maka saya tidak melakukan kecurangan seperti yang telah dispesifikasikan. Aamiin. 
 
 #### Desain Program
 
