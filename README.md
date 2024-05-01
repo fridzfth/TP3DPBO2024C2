@@ -55,6 +55,17 @@
 6. **Penutup Database:**
     - Setelah selesai, program menutup koneksi ke database untuk menghemat sumber daya.
 
+
+#### Dokumentasi
+
+1. **Desain Database:**
+    ![Desain Database](https://github.com/fridzfth/TP3DPBO2024C2/assets/140497713/1c1feba1-191d-44d5-9517-75f6735391a1)
+
+2. Video Demo
+
+https://github.com/fridzfth/TP3DPBO2024C2/assets/140497713/7e3c3f9b-2261-4508-b204-3b57bed2f2e1
+
+
 #### Kesimpulan
 
 Program ini memberikan fungsionalitas dasar untuk mengelola data pasien, dokter, dan appointment dalam suatu sistem manajemen rumah sakit. Dengan menggunakan PHP dan MySQL, program ini memungkinkan pengguna untuk menambahkan, mengedit, dan menghapus data dengan mudah melalui antarmuka web yang sederhana.
