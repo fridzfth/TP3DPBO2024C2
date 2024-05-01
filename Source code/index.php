@@ -16,11 +16,20 @@ $listDokter->getDokter();
 // cari Dokter
 if (isset($_POST['btn-cari'])) {
     // methode mencari data Dokter
-    $listDokter->searchDokter($_POST['cari']);
+    $keyword = $_POST['cari'];
+    $listDokter->searchDokter($keyword);
+} else if (isset($_POST['btn-sort'])) {
+    // Periksa apakah tombol sort ditekan, jika ya, ambil nilai 'asc' atau 'desc' dari dropdown
+    $type = $_POST['sort-type']; 
+    // Panggil metode sortDokter dengan argumen 'asc' atau 'desc'
+    $listDokter->sortDokter($type);
 } else {
     // method menampilkan data Dokter
     $listDokter->getDokter();
 }
+
+
+
 
 $data = null;
 
@@ -36,7 +45,7 @@ while ($row = $listDokter->getResult()) {
         </div>
         <div class="card-body">
             <p class="card-text pengurus-nama my-0">' . $row['Nama_Dokter'] . '</p>
-            <p class="card-text divisi-nama">' . $row['Spesialisasi'] . '</p>
+            <p class="card-text divisi-nama">'."Dokter " . $row['Spesialisasi'] . '</p>
             <p class="card-text jabatan-nama my-0">' . $row['Nomor_Telepon'] . '</p>
         </div>
     </a>

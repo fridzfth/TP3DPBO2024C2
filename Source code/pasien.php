@@ -125,7 +125,6 @@ $Pasien->close();
 $view->replace('DATA_MAIN_TITLE', $mainTitle);
 $view->replace('DATA_TABEL_HEADER', $header);
 $view->replace('TAMBAH_TAMBAH', $formLabel);
-$view->replace('CARI_CARI', $formLabel);
 $view->replace('DATA_FORM_LABEL', $formLabel);
 $view->replace('DATA_TABEL', $data);
 $view->write();

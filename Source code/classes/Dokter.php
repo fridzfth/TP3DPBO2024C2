@@ -22,6 +22,11 @@ class Dokter extends DB // Mendefinisikan kelas Dokter yang merupakan turunan da
         return $this->executeAffected($query); // Menjalankan query dan mengembalikan jumlah baris yang terpengaruh
     }
 
+    function sortDokter($type){
+        $query = "SELECT * FROM Dokter Order By Nama_Dokter $type";
+        return $this->execute($query); // Menjalankan query dan mengembalikan hasilnya
+    }
+
     function updateDokter($id, $data) // Fungsi untuk memperbarui data dokter
     {
         $query = "UPDATE Dokter SET "; // Query SQL untuk memperbarui data dokter
@@ -56,7 +61,7 @@ class Dokter extends DB // Mendefinisikan kelas Dokter yang merupakan turunan da
 
     function searchDokter($keyword) // Fungsi untuk mencari dokter berdasarkan kata kunci
     {
-        $query = "SELECT * FROM Dokter WHERE Nama_Dokter LIKE '%$keyword%'"; // Query SQL untuk mencari dokter berdasarkan nama
+        $query = "SELECT * FROM Dokter WHERE Nama_Dokter LIKE '%$keyword%' OR Spesialisasi LIKE '%$keyword%' OR Nomor_Telepon LIKE '%$keyword%'"; // Query SQL untuk mencari dokter berdasarkan nama atau spesialisai
         return $this->execute($query); // Menjalankan query dan mengembalikan hasilnya
     }
 }

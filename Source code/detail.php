@@ -43,7 +43,7 @@ if (isset($_GET['id'])) {
                                 <tr>
                                     <td>Spesialisasi</td>
                                     <td>:</td>
-                                    <td>' . $row['Spesialisasi'] . '</td>
+                                    <td>' . "Dokter " . $row['Spesialisasi'] .'</td>
                                 </tr>
                                 <tr>
                                     <td>No Telp</td>

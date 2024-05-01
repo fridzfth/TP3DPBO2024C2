@@ -91,8 +91,17 @@
                     </li>
                 </ul>
                 <form class="d-flex" method="post" action="">
-                    <input class="form-control me-2" type="cari" name="cari" placeholder="cari dokter" aria-label="cari" size="40" autocomplete="off">
-                    <button class="btn btn-outline-light" type="submit" name="btn-cari">Cari</button>
+                    <input class="form-control me-2" type="cari" name="cari" placeholder="cari dokter" aria-label="cari" size="30" autocomplete="off">
+                                                
+                    <button class="btn btn-outline-light ms-2" type="submit" name="btn-cari">Cari</button>
+                    
+                    <div class="dropdown">
+                        <select class="form-select ms-2" name="sort-type" aria-label="Sort Type" style="width: 120px;">
+                            <option value="ASC">Asc</option>
+                            <option value="DESC">Desc</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-outline-light ms-2" type="submit" name="btn-sort">Sort</button>
                 </form>
             </div>
         </div>
@@ -103,20 +112,6 @@
                 <h3>Daftar Dokter</h3>
             </div>
             <div class="row">
-                <!-- <div class="col gx-2 gy-3 justify-content-center">
-                    <a href="detail.php?id=<?= $pengurus['pengurus_id'] ?>">
-                        <div class="card pt-4 px-2 pengurus-thumbnail">
-                            <div class="row justify-content-center">
-                                <img src="../assets/images/logo.png" class="card-img-top" alt="default.jpg">
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text pengurus-nama my-0">Nama Pengurus</p>
-                                <p class="card-text divisi-nama">Divisi</p>
-                                <p class="card-text jabatan-nama my-0">Jabatan</p>
-                            </div>
-                        </div>
-                    </a>
-                </div> -->
                 DATA_Dokter
             </div>
         </div>

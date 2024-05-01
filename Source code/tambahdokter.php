@@ -17,7 +17,7 @@ $page = 'index';
 $view = new Template('templates/skinform.html');
 
 // Mendefinisikan struktur formulir
-$form = '<form action="tambahDokter.php" method="POST" enctype="multipart/form-data">
+$form = '<form action="tambahdokter.php" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="photo" class="form-label">Photo</label>
                 <input type="file" class="form-control" id="photo" name="photo" required>
